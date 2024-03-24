@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { createNewBooking } from "../api/restfulBookingApi";
 
-export default function Page() {
+export default function CreateBooking() {
   const {
     control,
     handleSubmit,
@@ -19,7 +19,6 @@ export default function Page() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("Submitted Data:", data);
     const booking = {
       firstname: data.firstName,
       lastname: data.lastName,
@@ -33,7 +32,6 @@ export default function Page() {
     };
     await createNewBooking(booking)
       .then((res) => {
-        console.log(res);
         Alert.alert(
           "Success",
           `Booking ${res.bookingid} has been created succesfully.`,
@@ -45,7 +43,7 @@ export default function Page() {
         );
       })
       .catch((err) => {
-        console.log("er", err);
+        console.log("err", err);
         Alert.alert(
           "Error",
           "An error occurred while trying to create the booking.",

@@ -16,7 +16,6 @@ export default function AllBookings() {
   }, []);
   return (
     <View>
-      <Text>Home page pp</Text>
       <SafeAreaView style={styles.container}>
         <FlatList
           keyExtractor={(booking) => booking.bookingid}

@@ -43,7 +43,6 @@ export const getBookingById = async (bookingId) => {
   return await axios
     .get(`${BASE_URL}/booking/${bookingId}`, {
       headers: {
-        // Cookie: t,
         Accept: "*/*",
       },
     })
@@ -53,11 +52,9 @@ export const getBookingById = async (bookingId) => {
 };
 
 export const createNewBooking = async (booking) => {
-  console.log(booking);
   return await axios
     .post(`${BASE_URL}/booking`, booking, {
       headers: {
-        // Cookie: t,
         Accept: "*/*",
         "Content-Type": "application/json",
       },
