@@ -47,6 +47,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="booking/[id]"
         options={{
+          title: "Booking details",
           href: null,
         }}
       />

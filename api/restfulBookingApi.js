@@ -51,3 +51,18 @@ export const getBookingById = async (bookingId) => {
       return res.data;
     });
 };
+
+export const createNewBooking = async (booking) => {
+  console.log(booking);
+  return await axios
+    .post(`${BASE_URL}/booking`, booking, {
+      headers: {
+        // Cookie: t,
+        Accept: "*/*",
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      return res.data;
+    });
+};
