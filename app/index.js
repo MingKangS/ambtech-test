@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
-import { SafeAreaView, Text, View, FlatList, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { getBookingIds } from "../api/restfulBookingApi";
-import { Link } from "expo-router";
+import { router } from "expo-router";
 
 export default function AllBookings() {
   const [allBookingIds, setAllBookingIds] = useState([]);
@@ -16,23 +23,18 @@ export default function AllBookings() {
   }, []);
   return (
     <View>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <FlatList
           keyExtractor={(booking) => booking.bookingid}
           data={allBookingIds}
           renderItem={({ item }) => {
             return (
-              <Link
-                push
-                href={{
-                  pathname: "/booking/[id]",
-                  params: { id: item.bookingid },
-                }}
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() => router.push(`/booking/${item.bookingid}`)}
               >
-                <View>
-                  <Text>{item.bookingid}</Text>
-                </View>
-              </Link>
+                <Text>Booking {item.bookingid}</Text>
+              </TouchableOpacity>
             );
           }}
         ></FlatList>
@@ -42,6 +44,12 @@ export default function AllBookings() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
+  },
   item: {
     backgroundColor: "#f9c2ff",
     padding: 20,
@@ -50,5 +58,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+  },
+  card: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    margin: 15,
   },
 });
