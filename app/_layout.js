@@ -4,7 +4,10 @@ import { Tabs } from "expo-router";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "blue" }}>
+    <Tabs
+      backBehavior="history"
+      screenOptions={{ tabBarActiveTintColor: "blue" }}
+    >
       <Tabs.Screen
         name="profile"
         options={{
@@ -39,6 +42,12 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <FontAwesome size={28} name="cog" color={color} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="booking/[id]"
+        options={{
+          href: null,
         }}
       />
     </Tabs>
